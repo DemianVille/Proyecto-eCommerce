@@ -15,6 +15,8 @@ const sequelize = new Sequelize(
   }
 );
 
+User.initModel(sequelize);
+
 module.exports = {
   sequelize,
   User,

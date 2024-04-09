@@ -32,7 +32,7 @@ class User extends Model {
         },
         orderList: {
           type: DataTypes.STRING,
-          allowNull: false,
+          allowNull: true,
         },
       },
       {
