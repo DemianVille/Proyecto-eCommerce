@@ -22,7 +22,15 @@ class User extends Model {
           allowNull: false,
           unique: true,
         },
-        password: {
+        address: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        phone: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        orderList: {
           type: DataTypes.STRING,
           allowNull: false,
         },
