@@ -1,3 +1,5 @@
+const { User } = require("../models");
+
 const userController = {
   index: async (req, res) => {},
   show: async (req, res) => {},
