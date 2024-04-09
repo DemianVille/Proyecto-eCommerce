@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
 const User = require("./User");
-const Article = require("./Article");
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
@@ -16,13 +15,7 @@ const sequelize = new Sequelize(
   }
 );
 
-User.initModel(sequelize);
-Article.initModel(sequelize);
-
-User.hasMany(Article);
-Article.belongsTo(User);
-
 module.exports = {
   sequelize,
-  /* nombre de los modelos */
+  User,
 };
