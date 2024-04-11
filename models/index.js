@@ -2,6 +2,8 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
 const User = require("./User");
+const Category = require("./Category");
+const Admin = require("./Admin");
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
@@ -16,6 +18,8 @@ const sequelize = new Sequelize(
 );
 
 User.initModel(sequelize);
+Category.initModel(sequelize);
+Admin.initModel(sequelize);
 
 module.exports = {
   sequelize,
