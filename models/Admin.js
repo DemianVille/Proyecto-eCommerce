@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequalize");
+const { Model, DataTypes } = require("sequelize");
 
 class Admin extends Model {
   static initModel(sequelize) {
