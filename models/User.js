@@ -29,10 +29,15 @@ class User extends Model {
         phone: {
           type: DataTypes.STRING,
           allowNull: false,
+          unique: true,
         },
         orderList: {
           type: DataTypes.STRING,
           allowNull: true,
+        },
+        password: {
+          type: DataTypes.STRING,
+          allowNull: false,
         },
       },
       {
