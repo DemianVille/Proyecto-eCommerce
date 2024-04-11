@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 
 class Order extends Model {
-  static initModel(sequalize) {
+  static initModel(sequelize) {
     Order.init(
       {
         id: {
@@ -24,7 +24,7 @@ class Order extends Model {
         },
       },
       {
-        sequalize,
+        sequelize,
         modelName: "order",
       }
     );
