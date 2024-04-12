@@ -2,49 +2,69 @@ const { User } = require("../models");
 
 const userController = {
   index: async (req, res) => {
-    const users = await User.findAll();
-    res.json(users);
+    try {
+      const users = await User.findAll();
+      res.json(users);
+    } catch (error) {
+      console.error("Ha ocurrido un error:", error);
+    }
   },
   show: async (req, res) => {
-    const { id } = req.params;
-    const user = await User.findByPk(id);
-    res.send(user);
+    try {
+      const { id } = req.params;
+      const user = await User.findByPk(id);
+      res.send(user);
+    } catch (error) {
+      console.error("Ha ocurrido un error:", error);
+    }
   },
   store: async (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
-    const user = await User.create({ firstname, lastname, email, password });
-    res.send(user);
+    try {
+      const { firstname, lastname, email, password } = req.body;
+      const user = await User.create({ firstname, lastname, email, password });
+      res.send(user);
+    } catch (error) {
+      console.error("Ha ocurrido un error:", error);
+    }
   },
   update: async (req, res) => {
-    const { id } = req.params;
-    const { firstname, lastname, email, password } = req.body;
-    const user = await User.findByPk(id);
+    try {
+      const { id } = req.params;
+      const { firstname, lastname, email, password } = req.body;
+      const user = await User.findByPk(id);
 
-    if (firstname) {
-      user.firstname = firstname;
-    }
-    if (lastname) {
-      user.lastname = lastname;
-    }
-    if (email) {
-      user.email = email;
-    }
-    if (password) {
-      user.password = password;
-    }
+      if (firstname) {
+        user.firstname = firstname;
+      }
+      if (lastname) {
+        user.lastname = lastname;
+      }
+      if (email) {
+        user.email = email;
+      }
+      if (password) {
+        user.password = password;
+      }
 
-    await user.save();
+      await user.save();
 
-    return res.json("Usuario modificado");
+      return res.json("Usuario modificado");
+    } catch (error) {
+      console.error("Ha ocurrido un error:", error);
+    }
   },
   destroy: async (req, res) => {
-    const { id } = req.params;
-    await User.destroy({
-      where: {
-        id,
-      },
-    });
-    res.send(`Usuario con id ${id} eliminado`);
+    try {
+      const { id } = req.params;
+      await User.destroy({
+        where: {
+          id,
+        },
+      });
+      res.send(`Usuario con id ${id} eliminado`);
+    } catch (error) {
+      console.error("Ha ocurrido un error:", error);
+    }
   },
 };
 
