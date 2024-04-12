@@ -48,9 +48,9 @@ const userController = {
 
       await user.save();
 
-      return res.json("Usuario modificado");
+      return res.json("User modified");
     } catch (error) {
-      console.error("Ha ocurrido un error:", error);
+      console.error("An error has ocurred:", error);
     }
   },
   destroy: async (req, res) => {
@@ -61,9 +61,9 @@ const userController = {
           id,
         },
       });
-      res.send(`Usuario con id ${id} eliminado`);
+      res.send(`User with id ${id} errased`);
     } catch (error) {
-      console.error("Ha ocurrido un error:", error);
+      console.error("An error has ocurred:", error);
     }
   },
 };
