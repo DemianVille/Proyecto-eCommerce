@@ -21,3 +21,4 @@ async function userSeeder() {
 }
 
 module.exports = userSeeder;
+
