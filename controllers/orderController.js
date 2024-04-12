@@ -1,10 +1,10 @@
-const { User } = require("../models");
+const { Order } = require("../models");
 
-const userController = {
+const orderController = {
   index: async (req, res) => {
     try {
-      const users = await User.findAll();
-      res.json(users);
+      const orders = await Order.findAll();
+      res.json(orders);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
     }
@@ -12,8 +12,8 @@ const userController = {
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await User.findByPk(id);
-      res.send(user);
+      const order = await Order.findByPk(id);
+      res.send(order);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
     }
@@ -21,8 +21,8 @@ const userController = {
   store: async (req, res) => {
     try {
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.create({ firstname, lastname, email, password });
-      res.send(user);
+      const order = await Order.create({ firstname, lastname, email, password });
+      res.send(order);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
     }
@@ -31,24 +31,24 @@ const userController = {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.findByPk(id);
+      const order = await Order.findByPk(id);
 
       if (firstname) {
-        user.firstname = firstname;
+        order.firstname = firstname;
       }
       if (lastname) {
-        user.lastname = lastname;
+        order.lastname = lastname;
       }
       if (email) {
-        user.email = email;
+        order.email = email;
       }
       if (password) {
-        user.password = password;
+        order.password = password;
       }
 
-      await user.save();
+      await order.save();
 
-      return res.json("User modified");
+      return res.json("Order modified");
     } catch (error) {
       console.error("An error has ocurred:", error);
     }
@@ -56,16 +56,16 @@ const userController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      await User.destroy({
+      await Order.destroy({
         where: {
           id,
         },
       });
-      res.send(`User with id ${id} errased`);
+      res.send(`Order with id ${id} errased`);
     } catch (error) {
       console.error("An error has ocurred:", error);
     }
   },
 };
 
-module.exports = userController;
+module.exports = orderController;

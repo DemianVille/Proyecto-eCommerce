@@ -1,5 +1,10 @@
 require("dotenv").config();
 const userSeeder = require("./userSeeder");
+const adminSeeder = require("./adminSeeder");
+const categorySeeder = require("./categorySeeder");
 
 userSeeder();
-console.log("Se corrieron los seeders!")
+adminSeeder();
+categorySeeder();
+
+console.log("The seeders has been runned!");

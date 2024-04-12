@@ -1,54 +1,59 @@
-const { User } = require("../models");
+const { Admin } = require("../models");
 
-const userController = {
+const adminController = {
   index: async (req, res) => {
     try {
-      const users = await User.findAll();
-      res.json(users);
+      const admins = await Admin.findAll();
+      res.json(admins);
     } catch (error) {
-      console.error("Ha ocurrido un error:", error);
+      console.error("An error has ocurred:", error);
     }
   },
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await User.findByPk(id);
-      res.send(user);
+      const admin = await Admin.findByPk(id);
+      res.send(admin);
     } catch (error) {
-      console.error("Ha ocurrido un error:", error);
+      console.error("An error has ocurred:", error);
     }
   },
   store: async (req, res) => {
     try {
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.create({ firstname, lastname, email, password });
-      res.send(user);
+      const admin = await Admin.create({
+        firstname,
+        lastname,
+        email,
+        password,
+      });
+      res.send(admin);
     } catch (error) {
-      console.error("Ha ocurrido un error:", error);
+      console.error("An error has ocurred:", error);
     }
   },
   update: async (req, res) => {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.findByPk(id);
+      const admin = await Admin.findByPk(id);
 
       if (firstname) {
-        user.firstname = firstname;
+        admin.firstname = firstname;
       }
       if (lastname) {
-        user.lastname = lastname;
+        admin.lastname = lastname;
       }
       if (email) {
-        user.email = email;
+        admin.email = email;
       }
       if (password) {
-        user.password = password;
+        admin.password = password;
       }
 
-      await user.save();
+      await admin.save();
 
-      return res.json("User modified");
+      return res.json("Admin modified");
     } catch (error) {
       console.error("An error has ocurred:", error);
     }
@@ -56,16 +61,16 @@ const userController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      await User.destroy({
+      await Admin.destroy({
         where: {
           id,
         },
       });
-      res.send(`User with id ${id} errased`);
+      res.send(`Admin with id ${id} errased`);
     } catch (error) {
       console.error("An error has ocurred:", error);
     }
   },
 };
 
-module.exports = userController;
+module.exports = adminController;

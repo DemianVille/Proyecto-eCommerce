@@ -1,10 +1,10 @@
-const { User } = require("../models");
+const { Product } = require("../models");
 
-const userController = {
+const productController = {
   index: async (req, res) => {
     try {
-      const users = await User.findAll();
-      res.json(users);
+      const products = await Product.findAll();
+      res.json(products);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
     }
@@ -12,8 +12,8 @@ const userController = {
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await User.findByPk(id);
-      res.send(user);
+      const product = await Product.findByPk(id);
+      res.send(product);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
     }
@@ -21,8 +21,13 @@ const userController = {
   store: async (req, res) => {
     try {
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.create({ firstname, lastname, email, password });
-      res.send(user);
+      const product = await Product.create({
+        firstname,
+        lastname,
+        email,
+        password,
+      });
+      res.send(product);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
     }
@@ -31,24 +36,24 @@ const userController = {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.findByPk(id);
+      const product = await Product.findByPk(id);
 
       if (firstname) {
-        user.firstname = firstname;
+        product.firstname = firstname;
       }
       if (lastname) {
-        user.lastname = lastname;
+        product.lastname = lastname;
       }
       if (email) {
-        user.email = email;
+        product.email = email;
       }
       if (password) {
-        user.password = password;
+        product.password = password;
       }
 
-      await user.save();
+      await product.save();
 
-      return res.json("User modified");
+      return res.json("Product modified");
     } catch (error) {
       console.error("An error has ocurred:", error);
     }
@@ -56,16 +61,16 @@ const userController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      await User.destroy({
+      await Product.destroy({
         where: {
           id,
         },
       });
-      res.send(`User with id ${id} errased`);
+      res.send(`Product with id ${id} errased`);
     } catch (error) {
       console.error("An error has ocurred:", error);
     }
   },
 };
 
-module.exports = userController;
+module.exports = productController;
