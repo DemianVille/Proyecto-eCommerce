@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, STRING } = require("sequelize");
 
 class Product extends Model {
   static initModel(sequelize) {
@@ -19,6 +19,11 @@ class Product extends Model {
           allowNull: false,
           unique: true,
         },
+        color: {
+          type: DataTypes.STRING,
+          allowNull: true,
+          /* va en false */
+        },
         photo: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -34,11 +39,13 @@ class Product extends Model {
         },
         category: {
           type: DataTypes.STRING,
-          allowNull: false,
+          allowNull: true,
+          /* va en false */
         },
         feature: {
           type: DataTypes.BOOLEAN,
-          allowNull: false,
+          allowNull: true,
+          /* va en false */
         },
       },
       {
