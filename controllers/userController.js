@@ -35,7 +35,7 @@ const userController = {
 
     await user.save();
 
-    return res.json("Usuario modificado");
+    return res.json("User modified");
   },
   destroy: async (req, res) => {
     const { id } = req.params;
@@ -44,7 +44,7 @@ const userController = {
         id,
       },
     });
-    res.send(`Usuario con id ${id} eliminado`);
+    res.send(`User with id ${id} errased`);
   },
 };
 
