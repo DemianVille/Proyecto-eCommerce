@@ -39,6 +39,9 @@ const orderController = {
     try {
       const order = req.body;
 
+      if (!order.address) return res.json({ message: "Ups! Algo salió mal." });
+      if (!order.userId) return res.json({ message: "Ups! Algo salió mal." });
+
       for (const product of order.products) {
         /* TODO: obtener el userId de forma segura */
         const productInDb = await Product.findByPk(product.id);
