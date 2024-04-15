@@ -75,7 +75,7 @@ const orderController = {
       const order = await Order.findByPk(id);
 
       if (products) {
-        order.product = product;
+        order.products = products;
       }
       if (address) {
         order.address = address;
