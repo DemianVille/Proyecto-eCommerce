@@ -5,8 +5,9 @@ const categoryController = {
     try {
       const categories = await Category.findAll();
       res.json(categories);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   show: async (req, res) => {
@@ -14,8 +15,9 @@ const categoryController = {
       const { id } = req.params;
       const category = await Category.findByPk(id);
       res.send(category);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   store: async (req, res) => {
@@ -25,8 +27,9 @@ const categoryController = {
         name,
       });
       res.send(category);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   update: async (req, res) => {
@@ -42,8 +45,9 @@ const categoryController = {
       await category.save();
 
       return res.json("Category modified");
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   destroy: async (req, res) => {
@@ -55,8 +59,9 @@ const categoryController = {
         },
       });
       res.send(`Category with id ${id} errased`);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
 };

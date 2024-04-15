@@ -5,8 +5,9 @@ const productController = {
     try {
       const products = await Product.findAll();
       res.json(products);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   show: async (req, res) => {
@@ -14,8 +15,9 @@ const productController = {
       const { id } = req.params;
       const product = await Product.findByPk(id);
       res.send(product);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   store: async (req, res) => {
@@ -41,8 +43,9 @@ const productController = {
         feature,
       });
       res.send(product);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   update: async (req, res) => {
@@ -88,8 +91,9 @@ const productController = {
       await product.save();
 
       return res.json("Product modified");
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   destroy: async (req, res) => {
@@ -101,8 +105,9 @@ const productController = {
         },
       });
       res.send(`Product with id ${id} errased`);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
 };

@@ -5,8 +5,9 @@ const userController = {
     try {
       const users = await User.findAll();
       res.json(users);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   show: async (req, res) => {
@@ -14,8 +15,9 @@ const userController = {
       const { id } = req.params;
       const user = await User.findByPk(id);
       res.send(user);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   store: async (req, res) => {
@@ -23,8 +25,9 @@ const userController = {
       const { firstname, lastname, email, password } = req.body;
       const user = await User.create({ firstname, lastname, email, password });
       res.send(user);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   update: async (req, res) => {
@@ -49,8 +52,9 @@ const userController = {
       await user.save();
 
       return res.json("User modified");
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   destroy: async (req, res) => {
@@ -62,8 +66,9 @@ const userController = {
         },
       });
       res.send(`User with id ${id} errased`);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
 };

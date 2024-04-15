@@ -5,8 +5,9 @@ const adminController = {
     try {
       const admins = await Admin.findAll();
       res.json(admins);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   show: async (req, res) => {
@@ -14,8 +15,9 @@ const adminController = {
       const { id } = req.params;
       const admin = await Admin.findByPk(id);
       res.send(admin);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   store: async (req, res) => {
@@ -28,8 +30,9 @@ const adminController = {
         password,
       });
       res.send(admin);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   update: async (req, res) => {
@@ -54,8 +57,9 @@ const adminController = {
       await admin.save();
 
       return res.json("Admin modified");
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   destroy: async (req, res) => {
@@ -67,8 +71,9 @@ const adminController = {
         },
       });
       res.send(`Admin with id ${id} errased`);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
 };

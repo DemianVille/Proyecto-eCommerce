@@ -5,8 +5,9 @@ const orderController = {
     try {
       const orders = await Order.findAll();
       res.json(orders);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   show: async (req, res) => {
@@ -14,8 +15,9 @@ const orderController = {
       const { id } = req.params;
       const order = await Order.findByPk(id);
       res.send(order);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   /*   store: async (req, res) => {
@@ -29,34 +31,39 @@ const orderController = {
         status,
       });
       res.send(order);
-    } catch (error) {
+    } catch (err) {
       console.error("Ha ocurrido un error:", error);
     }
   }, */
   store: async (req, res) => {
-    const order = req.body;
+    try {
+      const order = req.body;
 
-    for (const product of order.products) {
-      /* TODO: obtener el userId de forma segura */
-      const productInDb = await Product.findByPk(product.id);
-      if (productInDb.stock < product.qty) {
-        return res.json({
-          message: "Unsuficient stock.",
-          product: product.id,
-          stock: productInDb.stock,
-        });
+      for (const product of order.products) {
+        /* TODO: obtener el userId de forma segura */
+        const productInDb = await Product.findByPk(product.id);
+        if (productInDb.stock < product.qty) {
+          return res.json({
+            message: "Unsuficient stock.",
+            product: product.id,
+            stock: productInDb.stock,
+          });
+        }
+        product.price = productInDb.price;
       }
-      product.price = productInDb.price;
-    }
-    order.status = "pending";
+      order.status = "pending";
 
-    for (const product of order.products) {
-      const productInDb = await Product.findByPk(product.id);
-      productInDb.stock -= product.qty;
-      await productInDb.save();
+      for (const product of order.products) {
+        const productInDb = await Product.findByPk(product.id);
+        productInDb.stock -= product.qty;
+        await productInDb.save();
+      }
+      await Order.create(order);
+      return res.send("Orden recibida");
+    } catch (err) {
+      console.error("Ha ocurrido un error:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
-    await Order.create(order);
-    return res.send("Orden recibida");
   },
   update: async (req, res) => {
     try {
@@ -77,8 +84,9 @@ const orderController = {
       await order.save();
 
       return res.json("Order modified");
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
   destroy: async (req, res) => {
@@ -90,8 +98,9 @@ const orderController = {
         },
       });
       res.send(`Order with id ${id} errased`);
-    } catch (error) {
+    } catch (err) {
       console.error("An error has ocurred:", error);
+      return res.json({ message: "Ups! Algo salió mal." });
     }
   },
 };
