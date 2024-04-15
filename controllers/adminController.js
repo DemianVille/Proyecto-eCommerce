@@ -7,7 +7,7 @@ const adminController = {
       res.json(admins);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -17,7 +17,7 @@ const adminController = {
       res.send(admin);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -32,7 +32,7 @@ const adminController = {
       res.send(admin);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -59,7 +59,7 @@ const adminController = {
       return res.json("Admin modified");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -73,7 +73,7 @@ const adminController = {
       res.send(`Admin with id ${id} errased`);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
 };

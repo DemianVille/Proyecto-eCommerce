@@ -7,7 +7,7 @@ const orderController = {
       res.json(orders);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -17,7 +17,7 @@ const orderController = {
       res.send(order);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   /*   store: async (req, res) => {
@@ -39,8 +39,8 @@ const orderController = {
     try {
       const order = req.body;
 
-      if (!order.address) return res.json({ message: "Ups! Algo salió mal." });
-      if (!order.userId) return res.json({ message: "Ups! Algo salió mal." });
+      if (!order.address) return res.json({ message: "Ups! Something went wrong." });
+      if (!order.userId) return res.json({ message: "Ups! Something went wrong." });
 
       for (const product of order.products) {
         /* TODO: obtener el userId de forma segura */
@@ -65,7 +65,7 @@ const orderController = {
       return res.send("Orden recibida");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -89,7 +89,7 @@ const orderController = {
       return res.json("Order modified");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -103,7 +103,7 @@ const orderController = {
       res.send(`Order with id ${id} errased`);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
 };
