@@ -6,7 +6,7 @@ const categoryController = {
       const categories = await Category.findAll();
       res.json(categories);
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -16,7 +16,7 @@ const categoryController = {
       const category = await Category.findByPk(id);
       res.send(category);
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -28,7 +28,7 @@ const categoryController = {
       });
       res.send(category);
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -46,7 +46,7 @@ const categoryController = {
 
       return res.json("Category modified");
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -60,7 +60,7 @@ const categoryController = {
       });
       res.send(`Category with id ${id} errased`);
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },

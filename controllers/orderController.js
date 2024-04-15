@@ -6,7 +6,7 @@ const orderController = {
       const orders = await Order.findAll();
       res.json(orders);
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -16,7 +16,7 @@ const orderController = {
       const order = await Order.findByPk(id);
       res.send(order);
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -32,7 +32,7 @@ const orderController = {
       });
       res.send(order);
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
     }
   }, */
   store: async (req, res) => {
@@ -61,7 +61,7 @@ const orderController = {
       await Order.create(order);
       return res.send("Orden recibida");
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -85,7 +85,7 @@ const orderController = {
 
       return res.json("Order modified");
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -99,7 +99,7 @@ const orderController = {
       });
       res.send(`Order with id ${id} errased`);
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },

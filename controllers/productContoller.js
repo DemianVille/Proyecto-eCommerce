@@ -6,7 +6,7 @@ const productController = {
       const products = await Product.findAll();
       res.json(products);
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -16,7 +16,7 @@ const productController = {
       const product = await Product.findByPk(id);
       res.send(product);
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -44,7 +44,7 @@ const productController = {
       });
       res.send(product);
     } catch (err) {
-      console.error("Ha ocurrido un error:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -92,7 +92,7 @@ const productController = {
 
       return res.json("Product modified");
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
@@ -106,7 +106,7 @@ const productController = {
       });
       res.send(`Product with id ${id} errased`);
     } catch (err) {
-      console.error("An error has ocurred:", error);
+      console.error(err);
       return res.json({ message: "Ups! Algo salió mal." });
     }
   },
