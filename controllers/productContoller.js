@@ -7,7 +7,7 @@ const productController = {
       res.json(products);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -17,7 +17,7 @@ const productController = {
       res.send(product);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -45,7 +45,7 @@ const productController = {
       res.send(product);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -93,7 +93,7 @@ const productController = {
       return res.json("Product modified");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -107,7 +107,7 @@ const productController = {
       res.send(`Product with id ${id} errased`);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
 };

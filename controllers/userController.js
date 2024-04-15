@@ -7,7 +7,7 @@ const userController = {
       res.json(users);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -17,7 +17,7 @@ const userController = {
       res.send(user);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -27,7 +27,7 @@ const userController = {
       res.send(user);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -54,7 +54,7 @@ const userController = {
       return res.json("User modified");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -68,7 +68,7 @@ const userController = {
       res.send(`User with id ${id} errased`);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Algo salió mal." });
+      return res.json({ message: "Ups! Something went wrong." });
     }
   },
 };

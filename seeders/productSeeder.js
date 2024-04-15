@@ -25,7 +25,7 @@ async function productSeeder() {
     {
       name: "Men's mesh with handles",
       description:
-        "A sweet and savory pizza with tomato sauce, mozzarella cheese, ham, and pineapple.",
+        ""/* TODO: descripcion adecuada */,
       photo:
         "https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/23883.25230.jpg",
       price: 13.99,
@@ -33,7 +33,7 @@ async function productSeeder() {
       featured: true,
     },
     {
-      name: "Men´s quilted dance belt",
+      name: "Men's quilted dance belt",
       description:
         "Signature cotton-lycra technology meets comfort to give you your new favorite dance belt. This staple piece delivers premium stretch and comfort in a stylish, simplistic way.",
       photo:
@@ -46,7 +46,7 @@ async function productSeeder() {
     {
       name: "Leotard Camilla",
       description:
-        "The Camilla is a variation of a usual leotard. spotlighting front and mesh inserts with strap details on the shoulders and back for a polished look. Comfort is promised with a mix of microfiber and mesh spandex supporting every move you make.",
+        "The Camilla is a variation of a usual leotard. Spotlighting front and mesh inserts with strap details on the shoulders and back for a polished look. Comfort is promised with a mix of microfiber and mesh spandex supporting every move you make.",
       photo:
         "https://www.sodanca.com/cdn/shop/products/SL135-midnight-blue-2_1_360x.jpg?v=1647614216",
       price: 57.0,
