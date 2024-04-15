@@ -20,8 +20,12 @@ const orderController = {
   },
   store: async (req, res) => {
     try {
-      const { firstname, lastname, email, password } = req.body;
-      const order = await Order.create({ firstname, lastname, email, password });
+      const { product, address, status } = req.body;
+      const order = await Order.create({
+        product,
+        address,
+        status,
+      });
       res.send(order);
     } catch (error) {
       console.error("Ha ocurrido un error:", error);
@@ -30,20 +34,17 @@ const orderController = {
   update: async (req, res) => {
     try {
       const { id } = req.params;
-      const { firstname, lastname, email, password } = req.body;
+      const { product, address, status } = req.body;
       const order = await Order.findByPk(id);
 
-      if (firstname) {
-        order.firstname = firstname;
+      if (product) {
+        order.product = product;
       }
-      if (lastname) {
-        order.lastname = lastname;
+      if (address) {
+        order.address = address;
       }
-      if (email) {
-        order.email = email;
-      }
-      if (password) {
-        order.password = password;
+      if (status) {
+        order.status = status;
       }
 
       await order.save();

@@ -20,12 +20,25 @@ const productController = {
   },
   store: async (req, res) => {
     try {
-      const { firstname, lastname, email, password } = req.body;
+      const {
+        name,
+        description,
+        color,
+        photo,
+        price,
+        stock,
+        category,
+        feature,
+      } = req.body;
       const product = await Product.create({
-        firstname,
-        lastname,
-        email,
-        password,
+        name,
+        description,
+        color,
+        photo,
+        price,
+        stock,
+        category,
+        feature,
       });
       res.send(product);
     } catch (error) {
@@ -35,20 +48,41 @@ const productController = {
   update: async (req, res) => {
     try {
       const { id } = req.params;
-      const { firstname, lastname, email, password } = req.body;
+      const {
+        name,
+        description,
+        color,
+        photo,
+        price,
+        stock,
+        category,
+        feature,
+      } = req.body;
       const product = await Product.findByPk(id);
 
-      if (firstname) {
-        product.firstname = firstname;
+      if (name) {
+        product.name = name;
       }
-      if (lastname) {
-        product.lastname = lastname;
+      if (description) {
+        product.description = description;
       }
-      if (email) {
-        product.email = email;
+      if (color) {
+        product.color = color;
       }
-      if (password) {
-        product.password = password;
+      if (photo) {
+        product.photo = photo;
+      }
+      if (price) {
+        product.price = price;
+      }
+      if (stock) {
+        product.stock = stock;
+      }
+      if (category) {
+        product.category = category;
+      }
+      if (feature) {
+        product.feature = feature;
       }
 
       await product.save();

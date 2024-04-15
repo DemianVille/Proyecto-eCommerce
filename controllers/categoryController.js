@@ -20,12 +20,9 @@ const categoryController = {
   },
   store: async (req, res) => {
     try {
-      const { firstname, lastname, email, password } = req.body;
+      const { name } = req.body;
       const category = await Category.create({
-        firstname,
-        lastname,
-        email,
-        password,
+        name,
       });
       res.send(category);
     } catch (error) {
@@ -35,20 +32,11 @@ const categoryController = {
   update: async (req, res) => {
     try {
       const { id } = req.params;
-      const { firstname, lastname, email, password } = req.body;
+      const { name } = req.body;
       const category = await Category.findByPk(id);
 
-      if (firstname) {
-        category.firstname = firstname;
-      }
-      if (lastname) {
-        category.lastname = lastname;
-      }
-      if (email) {
-        category.email = email;
-      }
-      if (password) {
-        category.password = password;
+      if (name) {
+        category.name = name;
       }
 
       await category.save();

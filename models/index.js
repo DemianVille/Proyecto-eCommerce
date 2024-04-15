@@ -25,6 +25,12 @@ Admin.initModel(sequelize);
 Order.initModel(sequelize);
 Product.initModel(sequelize);
 
+User.hasMany(Order);
+Order.belongsTo(User);
+
+Category.hasMany(Product);
+Product.belongsTo(Category);
+
 module.exports = {
   sequelize,
   User,
