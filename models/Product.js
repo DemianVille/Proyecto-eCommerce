@@ -36,7 +36,7 @@ class Product extends Model {
           type: DataTypes.BIGINT,
           allowNull: false,
         },
-        feature: {
+        featured: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
         },
