@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const userRoutes = require("./userRutes");
-const adminRoutes = require("./adminRutes");
-const categoryRoutes = require("./categoryRutes");
-const orderRoutes = require("./orderRutes");
-const productRoutes = require("./productRutes");
+const userRoutes = require("./userRoutes");
+const adminRoutes = require("./adminRoutes");
+const categoryRoutes = require("./categoryRoutes");
+const orderRoutes = require("./orderRoutes");
+const productRoutes = require("./productRoutes");
 
 router.use("/users", userRoutes);
 router.use("/admins", adminRoutes);
