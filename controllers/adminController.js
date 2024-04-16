@@ -39,24 +39,28 @@ const adminController = {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
+      const testerAdmin = await Admin.findByPk(1);
       const admin = await Admin.findByPk(id);
+      if (admin !== testerAdmin) {
+        if (firstname) {
+          admin.firstname = firstname;
+        }
+        if (lastname) {
+          admin.lastname = lastname;
+        }
+        if (email) {
+          admin.email = email;
+        }
+        if (password) {
+          admin.password = password;
+        }
 
-      if (firstname) {
-        admin.firstname = firstname;
-      }
-      if (lastname) {
-        admin.lastname = lastname;
-      }
-      if (email) {
-        admin.email = email;
-      }
-      if (password) {
-        admin.password = password;
-      }
+        await admin.save();
 
-      await admin.save();
-
-      return res.json("Admin modified");
+        return res.json("Admin modified");
+      } else {
+        return res.json({ message: "You can't modify this Admin" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -65,12 +69,19 @@ const adminController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      await Admin.destroy({
-        where: {
-          id,
-        },
-      });
-      return res.send(`Admin with id ${id} errased`);
+
+      const testerAdmin = await Admin.findByPk(1);
+      const paramsAdmin = await Admin.findByPk(id);
+      if (testerAdmin !== paramsAdmin) {
+        await Admin.destroy({
+          where: {
+            id,
+          },
+        });
+        return res.send(`Admin with id ${id} errased`);
+      } else {
+        return res.json({ message: "You can't errase this Admin" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
