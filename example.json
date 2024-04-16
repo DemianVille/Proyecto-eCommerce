@@ -1,19 +1,39 @@
-/* body de oders */
 {
-  "products": [
-    {
-      "id": 3,
-      "name": "Men's mesh with handles",
-      "qty": 4
-    },
-    {
-      "id": 1,
-      "name": "Adult footed tights",
-      "qty": 2
-    }
-  ],
-  "userId": 14,
-  "address": "29906 Bartholome Burg Apt. 827"
+  "BodyPostOrder": {
+    "products": [
+      {
+        "id": 3,
+        "name": "Men's mesh with handles",
+        "qty": 4
+      },
+      {
+        "id": 1,
+        "name": "Adult footed tights",
+        "qty": 2
+      }
+    ],
+    "userId": 14,
+    "address": "29906 Bartholome Burg Apt. 827"
+  },
+  "BodyCatchsOrder": {
+    "status": "shiped"
+  },
+  "BodyPostProducts": {
+    "name": "Ballet knee leg warmers",
+    "description": "Protect your legs from the cold with these excellent quality and durable wool leg warmers.",
+    "photo": "https://www.sodanca.com/cdn/shop/files/E8778-Burgundy_540x.jpg?v=1710341739",
+    "price": 22.0,
+    "stock": 35,
+    "featured": false,
+    "categoryId": 2
+  },
+  "BodyCatchProducts": {
+    "name": "Ballet knee leg warmers",
+    "description": "Protect your legs from the cold with these excellent quality and durable wool leg warmers.",
+    "photo": "https://www.sodanca.com/cdn/shop/files/E8778-Burgundy_540x.jpg?v=1710341739",
+    "price": 22.0,
+    "stock": 35,
+    "featured": false,
+    "categoryId": 2
+  }
 }
-
-/* body de products */
