@@ -1,0 +1,19 @@
+/* body de oders */
+{
+  "products": [
+    {
+      "id": 3,
+      "name": "Men's mesh with handles",
+      "qty": 4
+    },
+    {
+      "id": 1,
+      "name": "Adult footed tights",
+      "qty": 2
+    }
+  ],
+  "userId": 14,
+  "address": "29906 Bartholome Burg Apt. 827"
+}
+
+/* body de products */

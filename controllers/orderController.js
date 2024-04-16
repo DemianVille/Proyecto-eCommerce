@@ -39,8 +39,10 @@ const orderController = {
     try {
       const order = req.body;
 
-      if (!order.address) return res.json({ message: "Ups! Something went wrong." });
-      if (!order.userId) return res.json({ message: "Ups! Something went wrong." });
+      if (!order.address)
+        return res.json({ message: "Ups! Something went wrong." });
+      if (!order.userId)
+        return res.json({ message: "Ups! Something went wrong." });
 
       for (const product of order.products) {
         /* TODO: obtener el userId de forma segura */
@@ -71,15 +73,9 @@ const orderController = {
   update: async (req, res) => {
     try {
       const { id } = req.params;
-      const { products, address, status } = req.body;
+      const { status } = req.body;
       const order = await Order.findByPk(id);
 
-      if (products) {
-        order.products = products;
-      }
-      if (address) {
-        order.address = address;
-      }
       if (status) {
         order.status = status;
       }

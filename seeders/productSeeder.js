@@ -11,6 +11,7 @@ async function productSeeder() {
       price: 15.0,
       stock: 25,
       featured: true,
+      categoryId: 2,
     },
     {
       name: "Pointe Shoes Gaynor Minden",
@@ -21,16 +22,18 @@ async function productSeeder() {
       price: 116.0,
       stock: 18,
       featured: false,
+      categoryId: 1,
     },
     {
       name: "Men's mesh with handles",
       description:
-        ""/* TODO: descripcion adecuada */,
+        "Pointe shoes Gaynor Minden with soft sole ideal for beginner dancers. Comfortable and flexible.",
       photo:
         "https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/23883.25230.jpg",
       price: 13.99,
       stock: 10,
       featured: true,
+      categoryId: 3,
     },
     {
       name: "Men's quilted dance belt",
@@ -42,6 +45,7 @@ async function productSeeder() {
       price: 42.0,
       stock: 32,
       featured: false,
+      categoryId: 3,
     },
     {
       name: "Leotard Camilla",
@@ -52,6 +56,7 @@ async function productSeeder() {
       price: 57.0,
       stock: 15,
       featured: true,
+      categoryId: 2,
     },
     {
       name: "Leotard Lucille",
@@ -62,6 +67,7 @@ async function productSeeder() {
       price: 44.0,
       stock: 40,
       featured: false,
+      categoryId: 2,
     },
     {
       name: "Platter Tutu",
@@ -72,6 +78,7 @@ async function productSeeder() {
       price: 67.93,
       stock: 22,
       featured: true,
+      categoryId: 2,
     },
     {
       name: "Ballet knee leg warmers",
@@ -82,6 +89,7 @@ async function productSeeder() {
       price: 22.0,
       stock: 35,
       featured: false,
+      categoryId: 2,
     },
   ];
   await Product.bulkCreate(products);
