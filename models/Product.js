@@ -37,15 +37,9 @@ class Product extends Model {
           type: DataTypes.BIGINT,
           allowNull: false,
         },
-        category: {
-          type: DataTypes.STRING,
-          allowNull: true,
-          /* va en false */
-        },
         feature: {
           type: DataTypes.BOOLEAN,
-          allowNull: true,
-          /* va en false */
+          allowNull: false,
         },
       },
       {
