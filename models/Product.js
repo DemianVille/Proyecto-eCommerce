@@ -22,7 +22,6 @@ class Product extends Model {
         color: {
           type: DataTypes.STRING,
           allowNull: true,
-          /* va en false */
         },
         photo: {
           type: DataTypes.STRING,
