@@ -4,7 +4,7 @@ const orderController = {
   index: async (req, res) => {
     try {
       const orders = await Order.findAll();
-      res.json(orders);
+      return res.json(orders);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -14,7 +14,7 @@ const orderController = {
     try {
       const { id } = req.params;
       const order = await Order.findByPk(id);
-      res.send(order);
+      return res.send(order);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -96,7 +96,7 @@ const orderController = {
           id,
         },
       });
-      res.send(`Order with id ${id} errased`);
+      return res.send(`Order with id ${id} errased`);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });

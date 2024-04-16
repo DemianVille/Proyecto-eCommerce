@@ -4,7 +4,7 @@ const productController = {
   index: async (req, res) => {
     try {
       const products = await Product.findAll();
-      res.json(products);
+      return res.json(products);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -14,7 +14,7 @@ const productController = {
     try {
       const { id } = req.params;
       const product = await Product.findByPk(id);
-      res.send(product);
+      return res.send(product);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -42,7 +42,7 @@ const productController = {
         category,
         feature,
       });
-      res.send(product);
+      return res.send(product);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -104,7 +104,7 @@ const productController = {
           id,
         },
       });
-      res.send(`Product with id ${id} errased`);
+      return res.send(`Product with id ${id} errased`);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });

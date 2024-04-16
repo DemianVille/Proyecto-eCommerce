@@ -4,7 +4,7 @@ const userController = {
   index: async (req, res) => {
     try {
       const users = await User.findAll();
-      res.json(users);
+      return res.json(users);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -14,7 +14,7 @@ const userController = {
     try {
       const { id } = req.params;
       const user = await User.findByPk(id);
-      res.send(user);
+      return res.send(user);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -24,7 +24,7 @@ const userController = {
     try {
       const { firstname, lastname, email, password } = req.body;
       const user = await User.create({ firstname, lastname, email, password });
-      res.send(user);
+      return res.send(user);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -65,7 +65,7 @@ const userController = {
           id,
         },
       });
-      res.send(`User with id ${id} errased`);
+      return res.send(`User with id ${id} errased`);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });

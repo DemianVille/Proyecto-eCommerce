@@ -4,7 +4,7 @@ const categoryController = {
   index: async (req, res) => {
     try {
       const categories = await Category.findAll();
-      res.json(categories);
+      return res.json(categories);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -14,7 +14,7 @@ const categoryController = {
     try {
       const { id } = req.params;
       const category = await Category.findByPk(id);
-      res.send(category);
+      return res.send(category);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -26,7 +26,7 @@ const categoryController = {
       const category = await Category.create({
         name,
       });
-      res.send(category);
+      return res.send(category);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -58,7 +58,7 @@ const categoryController = {
           id,
         },
       });
-      res.send(`Category with id ${id} errased`);
+      return res.send(`Category with id ${id} errased`);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
