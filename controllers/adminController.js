@@ -4,7 +4,7 @@ const adminController = {
   index: async (req, res) => {
     try {
       const admins = await Admin.findAll();
-      res.json(admins);
+      return res.json(admins);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -14,7 +14,7 @@ const adminController = {
     try {
       const { id } = req.params;
       const admin = await Admin.findByPk(id);
-      res.send(admin);
+      return res.send(admin);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -29,7 +29,7 @@ const adminController = {
         email,
         password,
       });
-      res.send(admin);
+      return res.send(admin);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -69,6 +69,7 @@ const adminController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
+
       const testerAdmin = await Admin.findByPk(1);
       const paramsAdmin = await Admin.findByPk(id);
       if (testerAdmin !== paramsAdmin) {

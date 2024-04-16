@@ -29,7 +29,7 @@ class Product extends Model {
           unique: true,
         },
         price: {
-          type: DataTypes.BIGINT,
+          type: DataTypes.DECIMAL,
           allowNull: false,
         },
         stock: {
