@@ -3,7 +3,14 @@ const { Admin } = require("../models");
 
 async function adminSeeder() {
   const admin = [];
-  for (let i = 0; i < 20; i++) {
+  const testerAdmin = {
+    firstname: "Admin",
+    lastname: "Admin",
+    email: "admin@admin.uy",
+    password: "123",
+  };
+  admin.push(testerAdmin);
+  for (let i = 0; i < 9; i++) {
     const firstname = faker.person.firstName();
     const lastname = faker.person.lastName();
     const newAdmin = {
