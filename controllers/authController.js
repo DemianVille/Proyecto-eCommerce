@@ -3,15 +3,20 @@ const { User } = require("../models");
 
 const authController = {
   getToken: async (req, res) => {
-    const { email, password } = req.body;
+    try {
+      const { email, password } = req.body;
 
-    const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } });
 
-    if (user === null) return res.json({ message: "Invalid credentials" });
+      if (user === null) return res.json({ message: "Invalid credentials" });
 
-    // const token = jwt.sign({ sub: "user123" }, "UnStringMuySecreto");
+      // const token = jwt.sign({ sub: "user123" }, "UnStringMuySecreto");
 
-    return req.json("OK");
+      return req.json("OK");
+    } catch (err) {
+      console.error(err);
+      return res.json({ message: "Ups! Something went wrong." });
+    }
   },
 };
 
