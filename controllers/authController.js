@@ -7,12 +7,12 @@ const authController = {
     try {
       const { email, password } = req.body;
 
-      const user = await Admin.findOne({ where: { email } });
+      const admin = await Admin.findOne({ where: { email } });
 
-      if (!user || user.password !== password)
+      if (!admin || admin.password !== password)
         return res.json({ message: process.env.SECRET_WORD });
 
-      const token = jwt.sign({ sub: user.id }, process.env.SECRET_WORD);
+      const token = jwt.sign({ sub: admin.id }, process.env.SECRET_WORD);
 
       return res.status(200).json({ token });
     } catch (err) {
