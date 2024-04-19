@@ -44,8 +44,8 @@ const orderController = {
       if (!order.userId)
         return res.json({ message: "Ups! Something went wrong." });
 
+      /* TODO: obtener el userId de forma segura */
       for (const product of order.products) {
-        /* TODO: obtener el userId de forma segura */
         const productInDb = await Product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
           return res.json({
