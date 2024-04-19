@@ -30,7 +30,7 @@ const productController = {
         price,
         stock,
         category,
-        feature,
+        featured,
       } = req.body;
       const product = await Product.create({
         name,
@@ -40,7 +40,7 @@ const productController = {
         price,
         stock,
         category,
-        feature,
+        featured,
       });
       return res.send(product);
     } catch (err) {
@@ -59,7 +59,7 @@ const productController = {
         price,
         stock,
         category,
-        feature,
+        featured,
       } = req.body;
       const product = await Product.findByPk(id);
 
@@ -84,8 +84,8 @@ const productController = {
       if (category) {
         product.category = category;
       }
-      if (feature) {
-        product.feature = feature;
+      if (featured) {
+        product.featured = featured;
       }
 
       await product.save();
