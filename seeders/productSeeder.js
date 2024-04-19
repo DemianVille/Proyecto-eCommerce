@@ -96,4 +96,9 @@ async function productSeeder() {
   console.log("The seeder of products has been runned!");
 }
 
+
+
+
+
+
 module.exports = productSeeder;
