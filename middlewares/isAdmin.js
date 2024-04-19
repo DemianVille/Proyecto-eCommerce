@@ -1,6 +1,3 @@
-const jwt = require("jsonwebtoken");
-const express = require("express");
-
 async function isAdmin(req, res, next) {
   try {
     const authReq = await req.auth.role;
