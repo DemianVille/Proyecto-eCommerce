@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const bcrypt = require("bcryptjs");
 
 const userController = {
   index: async (req, res) => {
@@ -23,7 +24,13 @@ const userController = {
   store: async (req, res) => {
     try {
       const { firstname, lastname, email, password } = req.body;
-      const user = await User.create({ firstname, lastname, email, password });
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await User.create({
+        firstname,
+        lastname,
+        email,
+        password: hashedPassword,
+      });
       return res.send(user);
     } catch (err) {
       console.error(err);
@@ -34,6 +41,7 @@ const userController = {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.findByPk(id);
 
       if (firstname) {
@@ -46,7 +54,7 @@ const userController = {
         user.email = email;
       }
       if (password) {
-        user.password = password;
+        user.password = hashedPassword;
       }
 
       await user.save();
