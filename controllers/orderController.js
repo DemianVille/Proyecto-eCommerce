@@ -13,28 +13,20 @@ const orderController = {
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const order = await Order.findByPk(id);
-      return res.send(order);
+      const authId = req.auth.id;
+      const authRole = req.auth.role;
+      if (authRole === "Admin" || id === authId) {
+        const order = await Order.findByPk(id);
+        return res.send(order);
+      } else {
+        console.error(err);
+        return res.json({ message: "You can´t delete this user" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
     }
   },
-  /*   store: async (req, res) => {
-    try {
-      const { product, status, userId } = req.body;
-      const user = User.findByPk(userId);
-      const address = user.address;
-      const order = await Order.create({
-        products,
-        address,
-        status,
-      });
-      res.send(order);
-    } catch (err) {
-      console.error(err);
-    }
-  }, */
   store: async (req, res) => {
     try {
       const order = req.body;
@@ -43,8 +35,6 @@ const orderController = {
         return res.json({ message: "Ups! Something went wrong." });
       if (!order.userId)
         return res.json({ message: "Ups! Something went wrong." });
-
-      /* TODO: obtener el userId de forma segura */
       for (const product of order.products) {
         const productInDb = await Product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
@@ -74,15 +64,22 @@ const orderController = {
     try {
       const { id } = req.params;
       const { status } = req.body;
-      const order = await Order.findByPk(id);
+      const authId = req.auth.id;
+      const authRole = req.auth.role;
+      if (authRole === "Admin" || id === authId) {
+        const order = await Order.findByPk(id);
 
-      if (status) {
-        order.status = status;
+        if (status) {
+          order.status = status;
+        }
+
+        await order.save();
+
+        return res.json("Order modified");
+      } else {
+        console.error(err);
+        return res.json({ message: "You can´t delete this user" });
       }
-
-      await order.save();
-
-      return res.json("Order modified");
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -91,12 +88,19 @@ const orderController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      await Order.destroy({
-        where: {
-          id,
-        },
-      });
-      return res.send(`Order with id ${id} errased`);
+      const authId = req.auth.id;
+      const authRole = req.auth.role;
+      if (authRole === "Admin" || id === authId) {
+        await Order.destroy({
+          where: {
+            id,
+          },
+        });
+        return res.send(`Order with id ${id} errased`);
+      } else {
+        console.error(err);
+        return res.json({ message: "You can´t delete this user" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });

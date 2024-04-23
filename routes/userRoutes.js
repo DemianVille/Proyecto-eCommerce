@@ -13,7 +13,6 @@ router.get(
 router.get(
   "/:id",
   checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] }),
-  isAdmin,
   userController.show
 );
 router.post("/", userController.store);

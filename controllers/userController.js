@@ -14,8 +14,15 @@ const userController = {
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await User.findByPk(id);
-      return res.send(user);
+      const authId = req.auth.id;
+      const authRole = req.auth.role;
+      if (authRole === "Admin" || id === authId) {
+        const user = await User.findByPk(id);
+        return res.send(user);
+      } else {
+        console.error(err);
+        return res.json({ message: "You can´t delete this user" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -42,24 +49,31 @@ const userController = {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.findByPk(id);
+      const authId = req.auth.id;
+      const authRole = req.auth.role;
+      if (authRole === "Admin" || id === authId) {
+        const user = await User.findByPk(id);
 
-      if (firstname) {
-        user.firstname = firstname;
-      }
-      if (lastname) {
-        user.lastname = lastname;
-      }
-      if (email) {
-        user.email = email;
-      }
-      if (password) {
-        user.password = hashedPassword;
-      }
+        if (firstname) {
+          user.firstname = firstname;
+        }
+        if (lastname) {
+          user.lastname = lastname;
+        }
+        if (email) {
+          user.email = email;
+        }
+        if (password) {
+          user.password = hashedPassword;
+        }
 
-      await user.save();
+        await user.save();
 
-      return res.json("User modified");
+        return res.json("User modified");
+      } else {
+        console.error(err);
+        return res.json({ message: "You can´t delete this user" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -68,12 +82,19 @@ const userController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      await User.destroy({
-        where: {
-          id,
-        },
-      });
-      return res.send(`User with id ${id} errased`);
+      const authId = req.auth.id;
+      const authRole = req.auth.role;
+      if (authRole === "Admin" || id === authId) {
+        await User.destroy({
+          where: {
+            id,
+          },
+        });
+        return res.send(`User with id ${id} errased`);
+      } else {
+        console.error(err);
+        return res.json({ message: "You can´t delete this user" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
