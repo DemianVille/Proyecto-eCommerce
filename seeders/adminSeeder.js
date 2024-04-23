@@ -4,17 +4,17 @@ const bcrypt = require("bcryptjs");
 
 async function adminSeeder() {
   const admin = [];
+  const hashedPassword = await bcrypt.hash("123", 10);
   const testerAdmin = {
     firstname: "Admin",
     lastname: "Admin",
     email: "admin@admin.uy",
-    password: "123",
+    password: hashedPassword,
   };
   admin.push(testerAdmin);
   for (let i = 0; i < 9; i++) {
     const firstname = faker.person.firstName();
     const lastname = faker.person.lastName();
-    const hashedPassword = await bcrypt.hash("123", 10);
     const newAdmin = {
       firstname,
       lastname,
