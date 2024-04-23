@@ -1,6 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { Admin, User } = require("../models");
+const bcrypt = require("bcryptjs");
 
 const authController = {
   getToken: async (req, res) => {
@@ -10,8 +11,8 @@ const authController = {
       const admin = await Admin.findOne({ where: { email } });
       const user = await User.findOne({ where: { email } });
 
-      if (!admin || admin.password !== password) {
-        if (!user || user.password !== password) {
+      if (!admin || (await bcrypt.compare(admin.password, password))) {
+        if (!user || (await bcrypt.compare(user.password, password))) {
           return res.json({ message: process.env.SECRET_WORD });
         }
       }
