@@ -11,19 +11,24 @@ const { expressjwt: checkJwt } = require("express-jwt");
 const isAdmin = require("../middlewares/isAdmin");
 
 router.use("/users", userRoutes);
+
 router.use(
   "/admins",
   checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] }),
   isAdmin,
   adminRoutes
 );
+
 router.use("/categories", categoryRoutes);
+
 router.use(
   "/orders",
   checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] }),
   orderRoutes
 );
+
 router.use("/products", productRoutes);
+
 router.use("/tokens", authRoutes);
 
 module.exports = router;

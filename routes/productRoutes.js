@@ -6,23 +6,13 @@ const isAdmin = require("../middlewares/isAdmin");
 
 router.get("/", productController.index);
 router.get("/:id", productController.show);
-router.post(
-  "/",
-  checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] }),
-  isAdmin,
-  productController.store
+
+router.use(
+  checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] })
 );
-router.delete(
-  "/:id",
-  checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] }),
-  isAdmin,
-  productController.destroy
-);
-router.patch(
-  "/:id",
-  checkJwt({ secret: process.env.SECRET_WORD, algorithms: ["HS256"] }),
-  isAdmin,
-  productController.update
-);
+
+router.post("/", isAdmin, productController.store);
+router.delete("/:id", isAdmin, productController.destroy);
+router.patch("/:id", isAdmin, productController.update);
 
 module.exports = router;
