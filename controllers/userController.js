@@ -30,12 +30,23 @@ const userController = {
   },
   store: async (req, res) => {
     try {
-      const { firstname, lastname, email, password } = req.body;
+      const {
+        firstname,
+        lastname,
+        email,
+        address,
+        phone,
+        orderList,
+        password,
+      } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
         firstname,
         lastname,
         email,
+        address,
+        phone,
+        orderList,
         password: hashedPassword,
       });
       return res.send(user);
@@ -47,7 +58,15 @@ const userController = {
   update: async (req, res) => {
     try {
       const { id } = req.params;
-      const { firstname, lastname, email, password } = req.body;
+      const {
+        firstname,
+        lastname,
+        email,
+        address,
+        phone,
+        orderList,
+        password,
+      } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const authId = req.auth.id;
       const authRole = req.auth.role;
@@ -62,6 +81,15 @@ const userController = {
         }
         if (email) {
           user.email = email;
+        }
+        if (address) {
+          user.address = address;
+        }
+        if (phone) {
+          user.phone = phone;
+        }
+        if (orderList) {
+          user.orderList = orderList;
         }
         if (password) {
           user.password = hashedPassword;
