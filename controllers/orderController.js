@@ -79,7 +79,7 @@ const orderController = {
         return res.json("Order modified");
       } else {
         console.error(err);
-        return res.json({ message: "You can't delete this user" });
+        return res.json({ message: "You can't update this order" });
       }
     } catch (err) {
       console.error(err);
@@ -100,7 +100,7 @@ const orderController = {
         return res.send(`Order with id ${id} errased`);
       } else {
         console.error(err);
-        return res.json({ message: "You can't delete this user" });
+        return res.json({ message: "You can't delete this order" });
       }
     } catch (err) {
       console.error(err);

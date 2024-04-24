@@ -91,7 +91,7 @@ const userController = {
         return res.json("User modified");
       } else {
         console.error(err);
-        return res.json({ message: "You can't delete this user" });
+        return res.json({ message: "You can't update this user" });
       }
     } catch (err) {
       console.error(err);
