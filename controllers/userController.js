@@ -21,7 +21,7 @@ const userController = {
         return res.send(user);
       } else {
         console.error(err);
-        return res.json({ message: "You can´t delete this user" });
+        return res.json({ message: "You can't delete this user" });
       }
     } catch (err) {
       console.error(err);
@@ -30,15 +30,7 @@ const userController = {
   },
   store: async (req, res) => {
     try {
-      const {
-        firstname,
-        lastname,
-        email,
-        address,
-        phone,
-        orderList,
-        password,
-      } = req.body;
+      const { firstname, lastname, email, address, phone, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
         firstname,
@@ -46,7 +38,6 @@ const userController = {
         email,
         address,
         phone,
-        orderList,
         password: hashedPassword,
       });
       return res.send(user);
@@ -100,7 +91,7 @@ const userController = {
         return res.json("User modified");
       } else {
         console.error(err);
-        return res.json({ message: "You can´t delete this user" });
+        return res.json({ message: "You can't delete this user" });
       }
     } catch (err) {
       console.error(err);

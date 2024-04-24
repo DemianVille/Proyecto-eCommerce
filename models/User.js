@@ -50,7 +50,3 @@ class User extends Model {
 }
 
 module.exports = User;
-
-address: 
-phone: 
-orderList: 

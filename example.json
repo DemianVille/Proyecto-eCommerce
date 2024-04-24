@@ -35,5 +35,13 @@
     "stock": 35,
     "featured": false,
     "categoryId": 2
+  },
+  "BodyPostUser": {
+    "firstname": "Nombre",
+    "lastname": "Apellido",
+    "email": "email@prueba.test",
+    "address": "Calle 123th",
+    "phone": "123456789",
+    "password": "123"
   }
 }
