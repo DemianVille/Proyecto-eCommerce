@@ -1,10 +1,10 @@
-const { User } = require("../models");
+const { User, Order } = require("../models");
 const bcrypt = require("bcryptjs");
 
 const userController = {
   index: async (req, res) => {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ include: Order });
       return res.json(users);
     } catch (err) {
       console.error(err);
@@ -14,14 +14,14 @@ const userController = {
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const authId = req.auth.id;
+      const authId = req.auth.sub;
       const authRole = req.auth.role;
       if (authRole === "Admin" || id === authId) {
-        const user = await User.findByPk(id);
+        const user = await User.findByPk(id, { include: Order });
         return res.send(user);
       } else {
         console.error(err);
-        return res.json({ message: "You can't delete this user" });
+        return res.json({ message: "You can't see this user" });
       }
     } catch (err) {
       console.error(err);
@@ -59,7 +59,7 @@ const userController = {
         password,
       } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const authId = req.auth.id;
+      const authId = req.auth.sub;
       const authRole = req.auth.role;
       if (authRole === "Admin" || id === authId) {
         const user = await User.findByPk(id);
@@ -101,7 +101,7 @@ const userController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      const authId = req.auth.id;
+      const authId = req.auth.sub;
       const authRole = req.auth.role;
       if (authRole === "Admin" || id === authId) {
         await User.destroy({

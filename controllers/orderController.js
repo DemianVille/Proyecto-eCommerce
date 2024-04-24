@@ -1,9 +1,9 @@
-const { Order, User, Product } = require("../models");
+const { Order, Product } = require("../models");
 
 const orderController = {
   index: async (req, res) => {
     try {
-      const orders = await Order.findAll();
+      const orders = await Order.findAll({ include: "user" });
       return res.json(orders);
     } catch (err) {
       console.error(err);
@@ -13,15 +13,15 @@ const orderController = {
   show: async (req, res) => {
     try {
       const { id } = req.params;
-      const authId = req.auth.id;
+      const authId = req.auth.sub;
       const authRole = req.auth.role;
-      if (authRole === "Admin" || id === authId) {
-        const order = await Order.findByPk(id);
-        return res.send(order);
-      } else {
-        console.error(err);
-        return res.json({ message: "You can't delete this user" });
-      }
+        const order = await Order.findByPk(id, { include: "user" });
+        if (authRole === "Admin" || order.userId === authId) {
+          return res.send(order);
+        } else {
+          console.error(err);
+          return res.json({ message: "You can't see this order" });
+        }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -35,6 +35,7 @@ const orderController = {
         return res.json({ message: "Ups! Something went wrong." });
       if (!order.userId)
         return res.json({ message: "Ups! Something went wrong." });
+
       for (const product of order.products) {
         const productInDb = await Product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
@@ -64,7 +65,7 @@ const orderController = {
     try {
       const { id } = req.params;
       const { status } = req.body;
-      const authId = req.auth.id;
+      const authId = req.auth.sub;
       const authRole = req.auth.role;
       if (authRole === "Admin" || id === authId) {
         const order = await Order.findByPk(id);

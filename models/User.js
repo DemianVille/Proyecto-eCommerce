@@ -31,10 +31,6 @@ class User extends Model {
           allowNull: false,
           unique: true,
         },
-        orderList: {
-          type: DataTypes.STRING,
-          allowNull: true,
-        },
         password: {
           type: DataTypes.STRING,
           allowNull: false,
