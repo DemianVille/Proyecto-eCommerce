@@ -104,7 +104,7 @@ const productController = {
           id,
         },
       });
-      return res.send(`Product with id ${id} errased`);
+      return res.send(`Product with id ${id} erased`);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });

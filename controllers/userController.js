@@ -109,10 +109,10 @@ const userController = {
             id,
           },
         });
-        return res.send(`User with id ${id} errased`);
+        return res.send(`User with id ${id} erased`);
       } else {
         console.error(err);
-        return res.json({ message: "You can't delete this user" });
+        return res.json({ message: "You can't erase this user" });
       }
     } catch (err) {
       console.error(err);

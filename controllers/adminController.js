@@ -81,9 +81,9 @@ const adminController = {
             id,
           },
         });
-        return res.send(`Admin with id ${id} errased`);
+        return res.send(`Admin with id ${id} erased`);
       } else {
-        return res.json({ message: "You can't errase this Admin" });
+        return res.json({ message: "You can't erase this Admin" });
       }
     } catch (err) {
       console.error(err);

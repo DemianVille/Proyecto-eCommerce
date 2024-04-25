@@ -39,7 +39,7 @@ const orderController = {
           const productInDb = await Product.findByPk(product.id);
           if (productInDb.stock < product.qty) {
             return res.json({
-              message: "Unsuficient stock.",
+              message: "Insufficient stock.",
               product: product.id,
               stock: productInDb.stock,
             });
@@ -54,7 +54,7 @@ const orderController = {
           await productInDb.save();
         }
         await Order.create(order);
-        return res.send("Orden recibida");
+        return res.send("Order received");
       }
 
       order.userId = req.auth.sub;
@@ -63,7 +63,7 @@ const orderController = {
         const productInDb = await Product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
           return res.json({
-            message: "Unsuficient stock.",
+            message: "Insufficient stock.",
             product: product.id,
             stock: productInDb.stock,
           });
@@ -78,7 +78,7 @@ const orderController = {
         await productInDb.save();
       }
       await Order.create(order);
-      return res.send("Orden recibida");
+      return res.send("Order received");
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -121,10 +121,10 @@ const orderController = {
             id,
           },
         });
-        return res.send(`Order with id ${id} errased`);
+        return res.send(`Order with id ${id} erased`);
       } else {
         console.error(err);
-        return res.json({ message: "You can't delete this order" });
+        return res.json({ message: "You can't erase this order" });
       }
     } catch (err) {
       console.error(err);

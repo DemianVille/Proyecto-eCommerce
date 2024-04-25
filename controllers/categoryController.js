@@ -58,7 +58,7 @@ const categoryController = {
           id,
         },
       });
-      return res.send(`Category with id ${id} errased`);
+      return res.send(`Category with id ${id} erased`);
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
