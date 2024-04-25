@@ -13,7 +13,7 @@ const authController = {
 
       if (!(admin && (await bcrypt.compare(password, admin.password)))) {
         if (!(user && (await bcrypt.compare(password, user.password)))) {
-          return res.json({ message: process.env.SECRET_WORD });
+          return res.json({ message: "This user doesn't exist." });
         }
       }
 
