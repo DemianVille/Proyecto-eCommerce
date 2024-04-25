@@ -33,8 +33,31 @@ const orderController = {
 
       if (!order.address)
         return res.json({ message: "Ups! Something went wrong." });
-      if (!order.userId)
-        return res.json({ message: "Ups! Something went wrong." });
+
+      if (req.auth.role === "Admin") {
+        for (const product of order.products) {
+          const productInDb = await Product.findByPk(product.id);
+          if (productInDb.stock < product.qty) {
+            return res.json({
+              message: "Unsuficient stock.",
+              product: product.id,
+              stock: productInDb.stock,
+            });
+          }
+          product.price = productInDb.price;
+        }
+        order.status = "pending";
+
+        for (const product of order.products) {
+          const productInDb = await Product.findByPk(product.id);
+          productInDb.stock -= product.qty;
+          await productInDb.save();
+        }
+        await Order.create(order);
+        return res.send("Orden recibida");
+      }
+
+      order.userId = req.auth.sub;
 
       for (const product of order.products) {
         const productInDb = await Product.findByPk(product.id);
@@ -89,7 +112,7 @@ const orderController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-      const authId = req.auth.id;
+      const authId = req.auth.sub;
       const authRole = req.auth.role;
       const order = await Order.findByPk(id);
       if (authRole === "Admin" || order.userId === authId) {
