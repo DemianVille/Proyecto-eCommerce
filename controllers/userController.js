@@ -16,7 +16,7 @@ const userController = {
       const { id } = req.params;
       const authId = req.auth.sub;
       const authRole = req.auth.role;
-      if (authRole === "Admin" || id === authId) {
+      if (authRole === "Admin" || id == authId) {
         const user = await User.findByPk(id, { include: Order });
         return res.send(user);
       } else {
@@ -61,7 +61,7 @@ const userController = {
       const hashedPassword = await bcrypt.hash(password, 10);
       const authId = req.auth.sub;
       const authRole = req.auth.role;
-      if (authRole === "Admin" || id === authId) {
+      if (authRole === "Admin" || id == authId) {
         const user = await User.findByPk(id);
 
         if (firstname) {
@@ -103,7 +103,7 @@ const userController = {
       const { id } = req.params;
       const authId = req.auth.sub;
       const authRole = req.auth.role;
-      if (authRole === "Admin" || id === authId) {
+      if (authRole === "Admin" || (id) == authId) {
         await User.destroy({
           where: {
             id,
