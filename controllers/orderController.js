@@ -15,13 +15,13 @@ const orderController = {
       const { id } = req.params;
       const authId = req.auth.sub;
       const authRole = req.auth.role;
-        const order = await Order.findByPk(id, { include: "user" });
-        if (authRole === "Admin" || order.userId === authId) {
-          return res.send(order);
-        } else {
-          console.error(err);
-          return res.json({ message: "You can't see this order" });
-        }
+      const order = await Order.findByPk(id, { include: "user" });
+      if (authRole === "Admin" || order.userId === authId) {
+        return res.send(order);
+      } else {
+        console.error("err");
+        return res.json({ message: "You can't see this order" });
+      }
     } catch (err) {
       console.error(err);
       return res.json({ message: "Ups! Something went wrong." });
@@ -91,7 +91,8 @@ const orderController = {
       const { id } = req.params;
       const authId = req.auth.id;
       const authRole = req.auth.role;
-      if (authRole === "Admin" || id === authId) {
+      const order = await Order.findByPk(id);
+      if (authRole === "Admin" || order.userId === authId) {
         await Order.destroy({
           where: {
             id,
