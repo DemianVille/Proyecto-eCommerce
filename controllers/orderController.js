@@ -35,6 +35,9 @@ const orderController = {
         return res.json({ message: "Ups! Something went wrong." });
 
       if (req.auth.role === "Admin") {
+        if (!order.userId)
+          return res.json({ message: "Ups! Something went wrong." });
+
         for (const product of order.products) {
           const productInDb = await Product.findByPk(product.id);
           if (productInDb.stock < product.qty) {
