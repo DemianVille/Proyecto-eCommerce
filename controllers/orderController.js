@@ -34,7 +34,7 @@ const orderController = {
       if (!order.address)
         return res.status(400).json({ message: "Address required." });
 
-      if (!order.product)
+      if (!order.products)
         return res.status(400).json({ message: "Product required." });
 
       if (req.auth.role === "Admin") {
@@ -98,14 +98,14 @@ const orderController = {
       const authRole = req.auth.role;
       if (authRole === "Admin" || id == authId) {
         const order = await Order.findByPk(id);
-
+        console.log(status)
         if (status) {
           order.status = status;
         }
 
         await order.save();
 
-        return res.status(200).json("Order modified");
+        return res.status(200).json({ message: "Order modified" });
       } else {
         console.error(err);
         return res.status(400).json({ message: "You can't update this order" });
