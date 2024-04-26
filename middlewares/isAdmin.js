@@ -7,7 +7,7 @@ async function isAdmin(req, res, next) {
     next();
   } catch (err) {
     console.error(err);
-    return res.json({ message: "Ups! Something went wrong." });
+    return res.status(400).json({ message: "Ups! Something went wrong." });
   }
 }
 

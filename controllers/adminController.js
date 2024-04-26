@@ -5,7 +5,7 @@ const adminController = {
   index: async (req, res) => {
     try {
       const admins = await Admin.findAll();
-      return res.json(admins);
+      return res.status(200).json(admins);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
@@ -15,7 +15,7 @@ const adminController = {
     try {
       const { id } = req.params;
       const admin = await Admin.findByPk(id);
-      return res.send(admin);
+      return res.status(200).json(admin);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
@@ -31,7 +31,7 @@ const adminController = {
         email,
         password: hashedPassword,
       });
-      return res.send(admin);
+      return res.status(200).json(admin);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
@@ -81,7 +81,7 @@ const adminController = {
             id,
           },
         });
-        return res.send(`Admin with id ${id} erased`);
+        return res.status.json({message:`Admin with id ${id} erased`});
       } else {
         return res.status(400).json({ message: "You can't erase this Admin" });
       }

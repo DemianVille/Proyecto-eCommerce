@@ -14,7 +14,7 @@ const categoryController = {
     try {
       const { id } = req.params;
       const category = await Category.findByPk(id);
-      return res.send(category);
+      return res.status(200).json(category);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
@@ -26,7 +26,7 @@ const categoryController = {
       const category = await Category.create({
         name,
       });
-      return res.send(category);
+      return res.status.json(category);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
@@ -58,7 +58,7 @@ const categoryController = {
           id,
         },
       });
-      return res.send(`Category with id ${id} erased`);
+      return res.status(200).json({message: `Category with id ${id} erased`});
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
