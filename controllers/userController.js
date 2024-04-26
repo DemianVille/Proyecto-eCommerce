@@ -1,4 +1,4 @@
-const { User, Order } = require("../models");
+const { User, Order, Admin } = require("../models");
 const bcrypt = require("bcryptjs");
 
 const userController = {
@@ -31,6 +31,12 @@ const userController = {
   store: async (req, res) => {
     try {
       const { firstname, lastname, email, address, phone, password } = req.body;
+
+      const admin = await Admin.findOne({ where: { email } });
+      if (admin) {
+        return res.status(401).json({ message: "This email already exists" });
+      }
+
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
         firstname,
