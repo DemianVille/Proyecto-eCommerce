@@ -7,7 +7,7 @@ const orderController = {
       return res.json(orders);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -17,14 +17,14 @@ const orderController = {
       const authRole = req.auth.role;
       const order = await Order.findByPk(id, { include: "user" });
       if (authRole === "Admin" || order.userId == authId) {
-        return res.send(order);
+        return res.status(200).json(order);
       } else {
         console.error("err");
-        return res.json({ message: "You can't see this order" });
+        return res.status(401).json({ message: "You can't see this order" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -32,16 +32,19 @@ const orderController = {
       const order = req.body;
 
       if (!order.address)
-        return res.json({ message: "Ups! Something went wrong." });
+        return res.status(400).json({ message: "Address required." });
+
+      if (!order.product)
+        return res.status(400).json({ message: "Product required." });
 
       if (req.auth.role === "Admin") {
         if (!order.userId)
-          return res.json({ message: "Ups! Something went wrong." });
+          return res.status(400).json({ message: "User ID required." });
 
         for (const product of order.products) {
           const productInDb = await Product.findByPk(product.id);
           if (productInDb.stock < product.qty) {
-            return res.json({
+            return res.status(400).json({
               message: "Out of stock.",
               product: product.id,
               stock: productInDb.stock,
@@ -57,7 +60,7 @@ const orderController = {
           await productInDb.save();
         }
         await Order.create(order);
-        return res.send("Order received");
+        return res.status(200).json({ message: "Order received." });
       }
 
       order.userId = req.auth.sub;
@@ -65,7 +68,7 @@ const orderController = {
       for (const product of order.products) {
         const productInDb = await Product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
-          return res.json({
+          return res.status(400).json({
             message: "Out of stock.",
             product: product.id,
             stock: productInDb.stock,
@@ -81,10 +84,10 @@ const orderController = {
         await productInDb.save();
       }
       await Order.create(order);
-      return res.send("Order received");
+      return res.status(200).json({ message: "Order received." });
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -102,14 +105,14 @@ const orderController = {
 
         await order.save();
 
-        return res.json("Order modified");
+        return res.status(200).json("Order modified");
       } else {
         console.error(err);
-        return res.json({ message: "You can't update this order" });
+        return res.status(400).json({ message: "You can't update this order" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -124,14 +127,14 @@ const orderController = {
             id,
           },
         });
-        return res.send(`Order with id ${id} erased`);
+        return res.status(200).json({ message: `Order with id ${id} erased` });
       } else {
         console.error(err);
-        return res.json({ message: "You can't erase this order" });
+        return res.status(401).json({ message: "You can't erase this order" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
 };

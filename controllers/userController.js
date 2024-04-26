@@ -5,10 +5,10 @@ const userController = {
   index: async (req, res) => {
     try {
       const users = await User.findAll({ include: Order });
-      return res.json(users);
+      return res.status(200).json(users);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -18,14 +18,14 @@ const userController = {
       const authRole = req.auth.role;
       if (authRole === "Admin" || id == authId) {
         const user = await User.findByPk(id, { include: Order });
-        return res.send(user);
+        return res.status(200).json(user);
       } else {
         console.error(err);
-        return res.json({ message: "You can't see this user" });
+        return res.status(400).json({ message: "You can't see this user" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -40,10 +40,10 @@ const userController = {
         phone,
         password: hashedPassword,
       });
-      return res.send(user);
+      return res.status(200).json(user);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -88,14 +88,14 @@ const userController = {
 
         await user.save();
 
-        return res.json("User modified");
+        return res.status(200).json({ message: "User modified" });
       } else {
         console.error(err);
-        return res.json({ message: "You can't update this user" });
+        return res.status(401).json({ message: "You can't update this user" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -103,20 +103,20 @@ const userController = {
       const { id } = req.params;
       const authId = req.auth.sub;
       const authRole = req.auth.role;
-      if (authRole === "Admin" || (id) == authId) {
+      if (authRole === "Admin" || id == authId) {
         await User.destroy({
           where: {
             id,
           },
         });
-        return res.send(`User with id ${id} erased`);
+        return res.status(200).json({ message: `User with id ${id} erased` });
       } else {
         console.error(err);
-        return res.json({ message: "You can't erase this user" });
+        return res.status(401).json({ message: "You can't erase this user" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
 };

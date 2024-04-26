@@ -4,20 +4,20 @@ const productController = {
   index: async (req, res) => {
     try {
       const products = await Product.findAll();
-      return res.json(products);
+      return res.status(200).json(products);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
     try {
       const { id } = req.params;
       const product = await Product.findByPk(id);
-      return res.send(product);
+      return res.status(200).json(product);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -42,10 +42,10 @@ const productController = {
         category,
         featured,
       });
-      return res.send(product);
+      return res.status(200).json(product);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -90,10 +90,10 @@ const productController = {
 
       await product.save();
 
-      return res.json("Product modified");
+      return res.status(200).json("Product modified");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -104,10 +104,10 @@ const productController = {
           id,
         },
       });
-      return res.send(`Product with id ${id} erased`);
+      return res.status(200).json({ message: `Product with id ${id} erased` });
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
 };
