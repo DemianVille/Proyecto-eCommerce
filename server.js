@@ -1,3 +1,7 @@
+/* 
+Miembros del grupo.
+Anthony Piñeyro, Demian Brinville, Sofia Rovati, Alhena Latorre, Franco Rodriguez
+ */
 require("dotenv").config();
 const express = require("express");
 const app = express();
