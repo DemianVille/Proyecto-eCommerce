@@ -7,7 +7,7 @@ const categoryController = {
       return res.json(categories);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -17,7 +17,7 @@ const categoryController = {
       return res.send(category);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -29,7 +29,7 @@ const categoryController = {
       return res.send(category);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -44,10 +44,10 @@ const categoryController = {
 
       await category.save();
 
-      return res.json("Category modified");
+      return res.status(200).json("Category modified");
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -61,7 +61,7 @@ const categoryController = {
       return res.send(`Category with id ${id} erased`);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
 };

@@ -8,7 +8,7 @@ const adminController = {
       return res.json(admins);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   show: async (req, res) => {
@@ -18,7 +18,7 @@ const adminController = {
       return res.send(admin);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   store: async (req, res) => {
@@ -34,7 +34,7 @@ const adminController = {
       return res.send(admin);
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   update: async (req, res) => {
@@ -60,13 +60,13 @@ const adminController = {
 
         await admin.save();
 
-        return res.json("Admin modified");
+        return res.status(200).json({message: "Admin modified"});
       } else {
-        return res.json({ message: "You can't modify this Admin" });
+        return res.status(401).json({ message: "You can't modify this Admin" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
   destroy: async (req, res) => {
@@ -83,11 +83,11 @@ const adminController = {
         });
         return res.send(`Admin with id ${id} erased`);
       } else {
-        return res.json({ message: "You can't erase this Admin" });
+        return res.status(400).json({ message: "You can't erase this Admin" });
       }
     } catch (err) {
       console.error(err);
-      return res.json({ message: "Ups! Something went wrong." });
+      return res.status(400).json({ message: "Ups! Something went wrong." });
     }
   },
 };

@@ -2,7 +2,7 @@ async function isAdmin(req, res, next) {
   try {
     const authReq = await req.auth.role;
     if (authReq !== "Admin") {
-      return res.json({ message: "Turn back, you're not an Admin!" });
+      return res.status(401).json({ message: "Turn back, you're not an Admin!" });
     }
     next();
   } catch (err) {
