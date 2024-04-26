@@ -41,7 +41,7 @@ const adminController = {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, password } = req.body;
-      const hashedPassword = await bcrypt.hash(unhashedPassword, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
       const testerAdmin = await Admin.findByPk(1);
       const admin = await Admin.findByPk(id);
       if (admin !== testerAdmin) {
@@ -60,7 +60,7 @@ const adminController = {
 
         await admin.save();
 
-        return res.status(200).json({message: "Admin modified"});
+        return res.status(200).json({ message: "Admin modified" });
       } else {
         return res.status(401).json({ message: "You can't modify this Admin" });
       }
@@ -81,7 +81,7 @@ const adminController = {
             id,
           },
         });
-        return res.status.json({message:`Admin with id ${id} erased`});
+        return res.status(200).json({ message: `Admin with id ${id} erased` });
       } else {
         return res.status(400).json({ message: "You can't erase this Admin" });
       }

@@ -26,7 +26,7 @@ const categoryController = {
       const category = await Category.create({
         name,
       });
-      return res.status.json(category);
+      return res.status(200).json(category);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
