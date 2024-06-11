@@ -15,7 +15,7 @@ class Product extends Model {
           unique: true,
         },
         description: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(500),
           allowNull: false,
           unique: true,
         },

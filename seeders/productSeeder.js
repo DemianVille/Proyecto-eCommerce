@@ -40,7 +40,7 @@ async function productSeeder() {
     {
       name: "Zapatilla Brio media punta",
       description:
-        "¡El héroe definitivo de las zapatillas de ballet de lona! Só Dança entiende que los bailarines son personas que tienen un pie derecho y un pie izquierdo. Entonces, ¿por qué no crear zapatillas de ballet específicas para cada pie? Hemos revolucionado el mundo del ballet con estas zapatillas de lona elástica con suela dividida y una única costura, que incluyen almohadillas más pequeñas para los dedos y el talón, facilitando una mejor conexión con el suelo.",
+        "Só Dança entiende que los bailarines son personas que tienen un pie derecho y un pie izquierdo. Entonces, ¿por qué no crear zapatillas de ballet específicas para cada pie? Hemos revolucionado el mundo del ballet con estas zapatillas de lona elástica con suela dividida y una única costura, que incluyen almohadillas más pequeñas para los dedos y el talón, facilitando una mejor conexión con el suelo.",
       photo:
         "https://www.sodanca.com/cdn/shop/products/SD120-light-pink-1-1_540x.jpg?v=1647611983",
       color: "rosa, negro, blanco, arena, marron ",
@@ -82,6 +82,7 @@ async function productSeeder() {
         "https://www.sodanca.com/cdn/shop/products/SD40V-Lt.-Salmon_911aaa1e-51ea-4a11-a60e-9e01731f605a_720x.jpg?v=1650998469",
       color: "rosa, negro, blanco, rojo, marron",
       price: 116.0,
+      stock: 20,
       featured: false,
       categoryId: 1,
     },
