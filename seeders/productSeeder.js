@@ -235,7 +235,7 @@ async function productSeeder() {
       description:
         "Esta camiseta sin mangas, suave y liviana, abraza cada movimiento para brindar un rango de movimiento óptimo y comodidad diaria. Un básico para el guardarropa de cualquier chico.",
       photo:
-        "https://www.sodanca.com/cdn/shop/files/D-300_black_540x.jpg?v=1715104314",
+        "https://www.sodanca.com/cdn/shop/files/D-300_black_540x.jpg?v=1715104314", 
       color: "blanco, negro",
       price: 12.0,
       stock: 20,
