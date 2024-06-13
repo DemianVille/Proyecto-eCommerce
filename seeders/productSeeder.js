@@ -38,18 +38,6 @@ async function productSeeder() {
       categoryId: 1,
     },
     {
-      name: "Protector para metatarso",
-      description:
-        "Con un nuevo modelo, el Protector Metatarsiano MD18 te trae mucha más comodidad. Con protección para los pies y suela de gamuza con función de absorción de impactos combinada con un diseño anatómico con 5 aberturas para los dedos, brinda una nueva experiencia tanto en el aula como en el escenario.",
-      photo:
-        "https://lojasodanca.vtexassets.com/arquivos/ids/363208-500-auto?v=638005713178170000&width=500&height=auto&aspect=true",
-      color: "beige",
-      price: 20,
-      stock: 20,
-      featured: false,
-      categoryId: 1,
-    },
-    {
       name: "Zapatilla para hombre",
       description:
         "Zapatilla de lona con suela dividida, de ajuste ancho están diseñadas para el pie de los hombres con un empeine más alto y ancho para lo último en comodidad.",
@@ -165,42 +153,6 @@ async function productSeeder() {
         "https://www.sodanca.com/cdn/shop/files/RDE2069-black-1_1_720x.jpg?v=1716320716",
       color: "negro",
       price: 48,
-      stock: 20,
-      featured: false,
-      categoryId: 2,
-    },
-    {
-      name: "Malla Renata",
-      description:
-        "Malla de adulto con mangas largas y escote redondo. Hecho en tela microfibra stretch para ofrecer libertad de movimiento y seguridad.",
-      photo:
-        "https://thedanceshop.com.uy/product/malla-manga-larga-negra-5443-so-danca-adulto/",
-      color: "negro",
-      price: 50,
-      stock: 20,
-      featured: false,
-      categoryId: 2,
-    },
-    {
-      name: "Malla Lainy",
-      description:
-        "Malla con tirantes anchos y escote redondeado. Hecho en SUPPLEX®, una tela extremadamente cómoda, de hilos poliamida y elastano de la más alta calidad para garantizar libertad de movimientos.",
-      photo:
-        "https://thedanceshop.com.uy/wp-content/uploads/2022/04/sd1856.jpg",
-      color: "negro",
-      price: 46,
-      stock: 20,
-      featured: false,
-      categoryId: 2,
-    },
-    {
-      name: "Malla Ariana",
-      description:
-        "Malla de breteles finos con detalles en tul en la cintura y un escote redondeado en el busto.",
-      photo:
-        "https://thedanceshop.com.uy/wp-content/uploads/2022/04/SD-1899-Collant-Flavia-Preto.webp",
-      color: "negro",
-      price: 39,
       stock: 20,
       featured: false,
       categoryId: 2,
