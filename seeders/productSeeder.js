@@ -73,7 +73,6 @@ async function productSeeder() {
       featured: false,
       categoryId: 1,
     },
-
     {
       name: "Zapatillas de punta Toshie",
       description:
@@ -209,7 +208,7 @@ async function productSeeder() {
     {
       name: "Malla Miley",
       description:
-        "Nuestra malla Miley con costuras Princess con forro de estantes para adultos con curvas está diseñado para brindar estilo y soporte a bailarinas de todos los tamaños. El diseño con costura princesa acentúa tus líneas, mientras que el estilo camisola ofrece una apariencia clásica y atemporal. El revestimiento del estante brinda mayor soporte y cobertura, lo que garantiza un ajuste seguro y cómodo. Hecho de material de alta calidad, este leo es duradero y elástico, lo que permite una gama completa de movimiento.",
+        "Nuestra malla Miley con costuras Princess con forro de estantes para adultos con curvas está diseñado para brindar estilo y soporte a bailarinas de todos los tamaños. El diseño con costura princesa acentúa tus líneas, mientras que el estilo camisola ofrece una apariencia clásica y atemporal. El revestimiento del estante brinda mayor soporte y cobertura, lo que garantiza un ajuste seguro y cómodo. Este leo es duradero y elástico, lo que permite una gama completa de movimiento.",
       photo:
         "https://www.sodanca.com/cdn/shop/files/SL192-burgundy-2_360x.jpg?v=1706040091",
       color: "negro, rojo, rosa, blanco",
@@ -399,7 +398,7 @@ async function productSeeder() {
       categoryId: 2,
     },
     {
-      name: "Pantalón de calentamiento",
+      name: "Pantalón de calentamiento de lana",
       description:
         "¿Alguna vez has conocido pantalones deportivos que no te gustaron? Estos pantalones deportivos Dia son tan cómodos como elegantes; es posible que tengas que comprar un par de todos los colores.",
       photo:
