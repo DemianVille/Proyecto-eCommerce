@@ -131,7 +131,7 @@ async function productSeeder() {
       price: 50,
       stock: 20,
       featured: false,
-      categoryId: 2,
+      categoryId: 1,
     },
     {
       name: "Botas Nube de calentamiento",
@@ -143,7 +143,7 @@ async function productSeeder() {
       price: 45,
       stock: 20,
       featured: false,
-      categoryId: 2,
+      categoryId: 1,
     },
     {
       name: "Malla Jenna",
