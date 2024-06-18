@@ -374,7 +374,7 @@ async function productSeeder() {
       categoryId: 2,
     },
     {
-      name: "Malla par el cuerpo",
+      name: "Malla de cuerpo completo",
       description:
         "Las mallas de ballet cubren todo el cuerpo, listas para transformar cada uno de tus movimientos. ",
       photo:
