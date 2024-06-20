@@ -404,7 +404,7 @@ async function productSeeder() {
       photo:
         "https://www.sodanca.com/cdn/shop/files/UG216-black-bottom_720x.jpg?v=1692910541",
       color: "negro, blanco, marron",
-      price: 8.0,
+      price: 40.0,
       stock: 20,
       featured: false,
       categoryId: 3,
