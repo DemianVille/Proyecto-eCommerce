@@ -19,8 +19,8 @@ class Product extends Model {
           allowNull: false,
           unique: true,
         },
-        color: {
-          type: DataTypes.STRING,
+        colors: {
+          type: DataTypes.JSON,
           allowNull: true,
         },
         photo: {
