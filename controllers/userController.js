@@ -46,7 +46,7 @@ const userController = {
         phone,
         password: hashedPassword,
       });
-      return res.status(200).json(user);
+      return res.status(200).json({ message: "User created successfully." });
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
