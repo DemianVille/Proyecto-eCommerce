@@ -22,13 +22,13 @@ const authController = {
           { sub: admin.id, role: "Admin" },
           process.env.SECRET_WORD
         );
-        return res.status(200).json({ token });
+        return res.status(200).json({ token, admin });
       } else if (user) {
         const token = jwt.sign(
           { sub: user.id, role: "User" },
           process.env.SECRET_WORD
         );
-        return res.status(200).json({ token });
+        return res.status(200).json({ token, user });
       }
     } catch (err) {
       console.error(err);
