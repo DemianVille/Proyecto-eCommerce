@@ -104,7 +104,7 @@ const productController = {
           id,
         },
       });
-      return res.status(200).json({ message: `Product with id ${id} erased` });
+      return res.status(200).json({ message: `Product erased.` });
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
