@@ -90,7 +90,7 @@ const productController = {
 
       await product.save();
 
-      return res.status(200).json("Product modified");
+      return res.status(200).json({ message: "Product modified." });
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: "Ups! Something went wrong." });
