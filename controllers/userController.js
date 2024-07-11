@@ -110,7 +110,7 @@ const userController = {
       const authId = req.auth.sub;
       const authRole = req.auth.role;
       if (authRole === "Admin" || id == authId) {
-        if (id !== 1) {
+        if (id != 1) {
           await User.destroy({
             where: {
               id,

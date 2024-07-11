@@ -72,10 +72,7 @@ const adminController = {
   destroy: async (req, res) => {
     try {
       const { id } = req.params;
-
-      const testerAdmin = await Admin.findByPk(1);
-      const paramsAdmin = await Admin.findByPk(id);
-      if (testerAdmin !== paramsAdmin) {
+      if (id != 1) {
         await Admin.destroy({
           where: {
             id,
