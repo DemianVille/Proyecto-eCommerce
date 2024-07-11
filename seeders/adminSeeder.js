@@ -15,10 +15,14 @@ async function adminSeeder() {
   for (let i = 0; i < 9; i++) {
     const firstname = faker.person.firstName();
     const lastname = faker.person.lastName();
+    const email = faker.internet.email({
+      firstName: firstname,
+      lastName: lastname,
+    });
     const newAdmin = {
       firstname,
       lastname,
-      email: faker.internet.email({ firstName: firstname, lastName: lastname }),
+      email: email.toLowerCase(),
       password: hashedPassword,
     };
     admin.push(newAdmin);
