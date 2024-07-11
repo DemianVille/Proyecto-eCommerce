@@ -4,9 +4,13 @@ const adminSeeder = require("./adminSeeder");
 const categorySeeder = require("./categorySeeder");
 const productSeeder = require("./productSeeder");
 
-userSeeder();
-adminSeeder();
-categorySeeder();
-productSeeder();
+async function seeders() {
+  await userSeeder();
+  await adminSeeder();
+  await categorySeeder();
+  await productSeeder();
+}
+
+seeders();
 
 console.log("The seeders has been runned!");

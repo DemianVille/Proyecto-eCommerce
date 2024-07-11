@@ -110,11 +110,13 @@ const userController = {
       const authId = req.auth.sub;
       const authRole = req.auth.role;
       if (authRole === "Admin" || id == authId) {
-        await User.destroy({
-          where: {
-            id,
-          },
-        });
+        if (id !== 1) {
+          await User.destroy({
+            where: {
+              id,
+            },
+          });
+        }
         return res.status(200).json({ message: `User with id ${id} erased` });
       } else {
         console.error(err);
