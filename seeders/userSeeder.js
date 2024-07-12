@@ -17,10 +17,11 @@ async function userSeeder() {
   for (let i = 0; i < 19; i++) {
     const firstname = faker.person.firstName();
     const lastname = faker.person.lastName();
+    const email = faker.internet.email({ firstName: firstname, lastName: lastname })
     const newUser = {
       firstname,
       lastname,
-      email: faker.internet.email({ firstName: firstname, lastName: lastname }),
+      email: email.toLowerCase(),
       address: faker.location.streetAddress({ useFullAddress: true }),
       phone: faker.phone.number(),
       password: hashedPassword,
