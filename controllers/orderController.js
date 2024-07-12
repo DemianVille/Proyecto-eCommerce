@@ -63,8 +63,6 @@ const orderController = {
         return res.status(200).json({ message: "Order received." });
       }
 
-      order.userId = req.auth.sub;
-
       for (const product of order.products) {
         const productInDb = await Product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
