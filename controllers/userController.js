@@ -67,6 +67,12 @@ const userController = {
       const hashedPassword = await bcrypt.hash(password, 10);
       const authId = req.auth.sub;
       const authRole = req.auth.role;
+      const testUser = await User.findByPk(id);
+      if (testUser.email === "test@user.uy") {
+        return res
+          .status(200)
+          .json({ message: "This user can not be modified" });
+      }
       if (authRole === "Admin" || id == authId) {
         const user = await User.findByPk(id);
 
