@@ -14,7 +14,8 @@ const corsOptions = {
     "https://copellia.vercel.app/",
     "https://copellia-admin.vercel.app/",
   ],
-  methods: "GET,PATCH,POST,DELETE",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
