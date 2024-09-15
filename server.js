@@ -10,14 +10,11 @@ const routes = require("./routes");
 const port = process.env.PORT || process.env.APP_PORT;
 
 const corsOptions = {
-  origin: [
-    "https://copellia.vercel.app/",
-    "https://copellia-admin.vercel.app/",
-  ],
+  origin: ["https://copellia.vercel.app", "https://copellia-admin.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-
+app.options("*", cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.use(express.json());
