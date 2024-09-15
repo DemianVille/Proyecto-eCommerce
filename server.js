@@ -9,7 +9,15 @@ const app = express();
 const routes = require("./routes");
 const port = process.env.PORT || process.env.APP_PORT;
 
-app.use(cors());
+const corsOptions = {
+  origin: [
+    "https://copellia.vercel.app/",
+    "https://copellia-admin.vercel.app/",
+  ],
+  methods: "GET,PATCH,POST,DELETE",
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(routes);
@@ -17,3 +25,5 @@ app.use(routes);
 app.listen(port, () =>
   console.log(`Server running in http://${process.env.APP_DOMAIN}.\n`)
 );
+
+module.exports = app;
