@@ -18,7 +18,7 @@ app.options("*", cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(routes);
+app.use("/api", routes);
 
 app.listen(port, () =>
   console.log(`Server running in http://${process.env.APP_DOMAIN}.\n`)
